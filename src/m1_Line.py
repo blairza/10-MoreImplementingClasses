@@ -227,6 +227,7 @@ class Line(object):
         # ---------------------------------------------------------------------
         self.start = start.clone()
         self.end = end.clone()
+        self.numclone = 0
 
     def __repr__(self):
         """
@@ -337,6 +338,7 @@ class Line(object):
         #        They include the Example in the above doc-string.
         # ---------------------------------------------------------------------
         line = Line(self.start.clone(),self.end.clone())
+        self.numclone = self.numclone + 1
         return line
 
     def reverse(self):
@@ -443,7 +445,7 @@ class Line(object):
           :rtype: float
         """
         # ---------------------------------------------------------------------
-        # TODO: 7.
+        # DONE: 7.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -451,6 +453,10 @@ class Line(object):
         #        The tests are already written (below).
         #        They include the Example in the above doc-string.
         # ---------------------------------------------------------------------
+        xc = (math.fabs(self.end.x - self.start.x))
+        yc = (math.fabs(self.end.y - self.start.y))
+        length = math.sqrt((xc**2) + (yc**2))
+        return length
 
     def get_number_of_clones(self):
         """
@@ -483,7 +489,7 @@ class Line(object):
           :rtype: int:
         """
         # ---------------------------------------------------------------------
-        # TODO: 8.
+        # DONE: 8.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -491,6 +497,7 @@ class Line(object):
         #        The tests are already written (below).
         #        They include the Example in the above doc-string.
         # ---------------------------------------------------------------------
+        return self.numclone
 
     def line_plus(self, other_line):
         """
@@ -517,7 +524,7 @@ class Line(object):
           :rtype: Line:
         """
         # ---------------------------------------------------------------------
-        # TODO: 9.
+        # DONE: 9.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -525,6 +532,14 @@ class Line(object):
         #        The tests are already written (below).
         #        They include the Example in the above doc-string.
         # ---------------------------------------------------------------------
+        linesx = self.start.x + other_line.start.x
+        linesy = self.start.y + other_line.start.y
+        linstart = Point(linesx,linesy)
+        lineex = self.end.x + other_line.end.x
+        lineey = self.end.y + other_line.end.y
+        linend = Point(lineex, lineey)
+        line = Line(linstart,linend)
+        return line
 
     def line_minus(self, other_line):
         """
@@ -551,7 +566,7 @@ class Line(object):
           :rtype: Line:
         """
         # ---------------------------------------------------------------------
-        # TODO: 10.
+        # DONE: 10.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -559,6 +574,14 @@ class Line(object):
         #        The tests are already written (below).
         #        They include the Example in the above doc-string.
         # ---------------------------------------------------------------------
+        linesx = self.start.x - other_line.start.x
+        linesy = self.start.y - other_line.start.y
+        linstart = Point(linesx, linesy)
+        lineex = self.end.x - other_line.end.x
+        lineey = self.end.y - other_line.end.y
+        linend = Point(lineex, lineey)
+        line = Line(linstart, linend)
+        return line
 
     def midpoint(self):
         """
